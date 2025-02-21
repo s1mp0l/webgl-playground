@@ -1,12 +1,30 @@
 <script lang="ts">
+  import { onMount } from "svelte";
   import { initWebGL, setupTexture } from "./lib/webgl";
   import { hexToRgb } from "./lib/utils";
+  import defaultImage from "/example.jpg";
 
   let canvas: HTMLCanvasElement;
   let fileInput: HTMLInputElement;
   let colorPicker: HTMLInputElement;
   let tolerance = 30;
   let gl: WebGLRenderingContext | null = null;
+  let downloadUrl: string = "";
+
+  onMount(() => {
+    const img = new Image();
+    img.onload = () => {
+      canvas.width = img.width;
+      canvas.height = img.height;
+
+      gl = initWebGL(canvas);
+      if (!gl) return;
+
+      setupTexture(gl, img);
+      updateImage();
+    };
+    img.src = defaultImage;
+  });
 
   function handleImage(event: Event) {
     const file = (event.target as HTMLInputElement).files?.[0];
@@ -56,6 +74,7 @@
     gl.uniform1f(toleranceLocation, tolerance);
 
     gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4);
+    downloadUrl = canvas.toDataURL("image/png");
   }
 
   $: if (gl && colorPicker?.value) {
@@ -92,10 +111,22 @@
     </div>
   </div>
 
-  <canvas bind:this={canvas}></canvas>
+  <div class="image-container">
+    <canvas bind:this={canvas}></canvas>
+    <a href={downloadUrl} download="result.png" class="download-button">
+      Download Image
+    </a>
+  </div>
 </main>
 
 <style>
+  .image-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+  }
+
   main {
     padding: 20px;
     max-width: 800px;
@@ -126,5 +157,14 @@
     display: flex;
     align-items: center;
     gap: 10px;
+  }
+
+  .download-button {
+    padding: 8px 16px;
+    cursor: pointer;
+    text-decoration: none;
+    background: #4caf50;
+    color: white;
+    border-radius: 4px;
   }
 </style>

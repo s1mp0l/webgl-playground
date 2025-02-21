@@ -6,3 +6,8 @@ declare module '*.svelte' {
   const component: ComponentType;
   export default component;
 }
+
+declare module '*.jpg' {
+  const value: string;
+  export default value;
+}
