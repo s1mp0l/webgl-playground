@@ -146,17 +146,18 @@
   }
 </script>
 
-<main>
+<div class="page">
+  <h1>Кинотеатр</h1>
+
   <canvas bind:this={canvas} width="800" height="600"></canvas>
-</main>
+</div>
 
 <style>
-  main {
+  .page {
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
-    height: 100%;
-    background: #000;
   }
 
   canvas {

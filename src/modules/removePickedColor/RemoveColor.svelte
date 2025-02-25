@@ -94,7 +94,7 @@
   }
 </script>
 
-<main>
+<div class="page">
   <h1>Удаление цвета из изображения</h1>
 
   <div class="controls">
@@ -125,7 +125,7 @@
       Download Image
     </a>
   </div>
-</main>
+</div>
 
 <style>
   .image-container {
@@ -135,7 +135,7 @@
     gap: 10px;
   }
 
-  main {
+  .page {
     padding: 20px;
     max-width: 800px;
     margin: 0 auto;
