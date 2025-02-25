@@ -94,7 +94,7 @@
     const triangleWave = Math.abs(2 * normalizedTime - 1); // Создает треугольную волну от 0 до 1 и обратно
     const cameraX = maxX * (1 - 2 * triangleWave); // Преобразуем в движение от +maxX до -maxX и обратно
     const cameraZ = baseZ; // Фиксированное расстояние от центра
-    const cameraY = 3;
+    const cameraY = 5;
 
     const viewMatrix = createViewMatrix(
       [cameraX, cameraY, cameraZ],
