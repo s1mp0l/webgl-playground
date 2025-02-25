@@ -1,6 +1,12 @@
 <script lang="ts">
   import { onMount } from "svelte";
-  import { initWebGL, setupTexture } from "../../shared/lib/webgl";
+  import { initWebGL } from "../../shared/lib/webgl";
+  import {
+    vertexShaderSource,
+    fragmentShaderSource,
+    setupRectangleBuffers,
+    setupImageTexture,
+  } from "./lib/shaders";
   import { hexToRgb } from "../../shared/lib/utils";
   import defaultImage from "/example.jpg";
 
@@ -17,10 +23,11 @@
       canvas.width = img.width;
       canvas.height = img.height;
 
-      gl = initWebGL(canvas);
+      gl = initWebGL(canvas, vertexShaderSource, fragmentShaderSource);
       if (!gl) return;
 
-      setupTexture(gl, img);
+      setupRectangleBuffers(gl);
+      setupImageTexture(gl, img);
       updateImage();
     };
     img.src = defaultImage;
@@ -37,10 +44,11 @@
         canvas.width = img.width;
         canvas.height = img.height;
 
-        gl = initWebGL(canvas);
+        gl = initWebGL(canvas, vertexShaderSource, fragmentShaderSource);
         if (!gl) return;
 
-        setupTexture(gl, img);
+        setupRectangleBuffers(gl);
+        setupImageTexture(gl, img);
         updateImage();
       };
       img.src = e.target?.result as string;
