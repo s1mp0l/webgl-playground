@@ -1,4 +1,4 @@
-import { vertexShaderSource, fragmentShaderSource } from './shaders';
+import { vertexShaderSource, fragmentShaderSource } from '../../modules/remove-picked-color/lib/shaders';
 
 export function initWebGL(canvas: HTMLCanvasElement): WebGLRenderingContext | null {
   const context = canvas.getContext("webgl", { premultipliedAlpha: false });

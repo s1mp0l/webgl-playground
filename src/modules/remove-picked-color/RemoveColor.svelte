@@ -1,7 +1,7 @@
 <script lang="ts">
   import { onMount } from "svelte";
-  import { initWebGL, setupTexture } from "./lib/webgl";
-  import { hexToRgb } from "./lib/utils";
+  import { initWebGL, setupTexture } from "../../shared/lib/webgl";
+  import { hexToRgb } from "../../shared/lib/utils";
   import defaultImage from "/example.jpg";
 
   let canvas: HTMLCanvasElement;
