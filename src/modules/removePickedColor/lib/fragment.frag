@@ -6,7 +6,7 @@ varying vec2 texCoord;
 
 void main() {
   vec4 color = texture2D(uImage, texCoord);
-  float distance = length(color.rgb - uTargetColor);
+  float distance = length(color.rgb - uTargetColor); // Евклидово расстояние
   
   if (distance < uTolerance / 255.0) {
     gl_FragColor = vec4(0.0, 0.0, 0.0, 0.0);

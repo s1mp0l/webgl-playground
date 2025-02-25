@@ -1,5 +1,5 @@
 <script lang="ts">
-  import RemoveColor from "./modules/remove-picked-color/RemoveColor.svelte";
+  import RemoveColor from "./modules/removePickedColor/RemoveColor.svelte";
 </script>
 
 <main>
