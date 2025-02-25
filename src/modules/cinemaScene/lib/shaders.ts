@@ -9,6 +9,7 @@ export function initBuffers(gl: WebGLRenderingContext): {
   position: WebGLBuffer | null;
   color: WebGLBuffer | null;
   indices: WebGLBuffer | null;
+  textureCoord: WebGLBuffer | null;
 } {
   // Создаем вершины для прямоугольника (параллелепипеда)
   const positions = new Float32Array([
@@ -24,12 +25,25 @@ export function initBuffers(gl: WebGLRenderingContext): {
      4.0, -3.0, -1,
   ]);
 
+  const textureCoordinates = new Float32Array([
+    // Передняя грань
+    0.0, 1.0,
+    1.0, 1.0,
+    1.0, 0.0,
+    0.0, 0.0,
+    // Задняя грань
+    0.0, 1.0,
+    0.0, 0.0,
+    1.0, 0.0,
+    1.0, 1.0,
+  ]);
+
   const colors = new Float32Array([
-    // Передняя грань (красная)
-    1.0, 0.0, 0.0, 1.0,
-    1.0, 0.0, 0.0, 1.0,
-    1.0, 0.0, 0.0, 1.0,
-    1.0, 0.0, 0.0, 1.0,
+    // Передняя грань (белая для текстуры)
+    1.0, 1.0, 1.0, 1.0,
+    1.0, 1.0, 1.0, 1.0,
+    1.0, 1.0, 1.0, 1.0,
+    1.0, 1.0, 1.0, 1.0,
     // Задняя грань (синяя)
     0.0, 0.0, 1.0, 1.0,
     0.0, 0.0, 1.0, 1.0,
@@ -50,6 +64,10 @@ export function initBuffers(gl: WebGLRenderingContext): {
   gl.bindBuffer(gl.ARRAY_BUFFER, positionBuffer);
   gl.bufferData(gl.ARRAY_BUFFER, positions, gl.STATIC_DRAW);
 
+  const textureCoordBuffer = gl.createBuffer();
+  gl.bindBuffer(gl.ARRAY_BUFFER, textureCoordBuffer);
+  gl.bufferData(gl.ARRAY_BUFFER, textureCoordinates, gl.STATIC_DRAW);
+
   const colorBuffer = gl.createBuffer();
   gl.bindBuffer(gl.ARRAY_BUFFER, colorBuffer);
   gl.bufferData(gl.ARRAY_BUFFER, colors, gl.STATIC_DRAW);
@@ -62,6 +80,7 @@ export function initBuffers(gl: WebGLRenderingContext): {
     position: positionBuffer,
     color: colorBuffer,
     indices: indexBuffer,
+    textureCoord: textureCoordBuffer,
   };
 }
 
