@@ -1,5 +1,5 @@
-import vertexShader from './vertex.vert';
-import fragmentShader from './fragment.frag';
+import vertexShader from './shaders/vertex.vert';
+import fragmentShader from './shaders/fragment.frag';
 
 export const vertexShaderSource = vertexShader;
 export const fragmentShaderSource = fragmentShader;

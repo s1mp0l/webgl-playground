@@ -1,8 +1,10 @@
 <script lang="ts">
   import RemoveColor from "./modules/removePickedColor/RemoveColor.svelte";
+  import CinemaScene from "./modules/cinemaScene/CinemaScene.svelte";
 </script>
 
 <main>
+  <CinemaScene />
   <RemoveColor />
 </main>
 
